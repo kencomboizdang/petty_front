@@ -9,7 +9,6 @@ import {
 import * as types from './constants';
 import * as axiosService from 'utils/axiosService';
 import * as api from 'utils/api';
-import { getList, getDetail } from 'utils/PettyApi';
 import axios from 'axios';
 import * as actions from './actions';
 
