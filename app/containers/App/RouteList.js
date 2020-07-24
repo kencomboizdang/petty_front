@@ -22,6 +22,12 @@ const routes = [
     main: () => <OrderProductsContainer />,
   },
   {
+    path: '/order/:id',
+    exact: true,
+    private: true,
+    main: () => <OrderProductsContainer />,
+  },
+  {
     path: '/product',
     exact: true,
     private: true,

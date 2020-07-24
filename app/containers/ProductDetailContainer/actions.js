@@ -4,7 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, CHANGE_PRODUCT_VALUE } from './constants';
+import { DEFAULT_ACTION, CHANGE_PRODUCT_VALUE, GET_CATEGORY, GET_CATEGORY_SUCCESS } from './constants';
 
 export const defaultAction = () => {
   return {
@@ -20,3 +20,8 @@ export const changeProductValue = (name, value) => {
     },
   };
 };
+export const getCategory=()=>{
+  return {
+    type: GET_CATEGORY,
+  }
+}

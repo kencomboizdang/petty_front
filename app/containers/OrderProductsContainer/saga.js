@@ -15,14 +15,7 @@ import * as actions from './actions';
 // Individual exports for testing
 function* changeAPI() {
   console.log('AAA');
-  // const resp = yield call(axiosService.get,"");
-  // const resp = yield call(getDetail, "data/2.5/weather?q=hanoi&appid=80b4beb7a95bcaa5f087313e6ef8f4ed");
-  // console.log(resp);
-  // console.log("AAA");
-  // const { status, data } = resp;
-  // console.log(status);
-  // console.log(data);
-  // console.log(resp);
+
 }
 function* getOrderProductStore() {
   console.log('ADADA');
