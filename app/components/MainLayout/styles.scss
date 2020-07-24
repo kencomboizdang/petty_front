@@ -1,0 +1,54 @@
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+  // background: #1890ff;
+}
+
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
+}
+
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+.site-layout .site-layout-background {
+  // width: 300px;
+  background: #fff;
+  width: 100%;
+  min-width: 1000px;
+}
+.background-content {
+  overflow: auto;
+  overflow-x: visible;
+
+}
+.logo {
+  // background-image: url("./../logo_orange.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  height: 50px;
+  width: 100%;
+}
+.ant-layout-sider-children {
+  width: 220px;
+  background-color: #fff;
+  color: #000000;
+
+  box-shadow: 2px 2px 2px #aaaaaa;
+}
+.ant-menu-submenu-title {
+  background-color: #fff;
+  color: #000000;
+}
+.ant-menu.ant-menu-dark .ant-menu-item-selected.customclass {
+  background-color: green; /*Overriden property*/
+}
