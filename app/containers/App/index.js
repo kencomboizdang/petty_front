@@ -28,12 +28,10 @@ class App extends React.Component {
     };
   }
   componentWillMount() {
-    console.log('ADD');
     var store = sessionStorage.getItem('store');
     console.log(store);
     if (store != null) {
       this.setState({ isSignedIn: true });
-      console.log('AS', this.props.history);
       if (this.props.history.location.pathname == '/login') {
         this.props.history.push('/order');
       }

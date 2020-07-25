@@ -5,6 +5,7 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import OrderProductsContainer from '../OrderProductsContainer';
 import OrderDetailContainer from '../OrderDetailContainer';
 import ProductDetailContainer from '../ProductDetailContainer';
+import ProductListContainer from '../ProductListContainer';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import AuthContext from '../../utils/auth';
 
@@ -29,7 +30,13 @@ const routes = [
     main: () => <OrderDetailContainer />,
   },
   {
-    path: '/product',
+    path: '/products',
+    exact: true,
+    private: true,
+    main: () => <ProductListContainer />,
+  },
+  {
+    path: '/add-product',
     exact: true,
     private: true,
     main: () => <ProductDetailContainer />,

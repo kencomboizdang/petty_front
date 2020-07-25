@@ -22,12 +22,19 @@ import { DatePicker } from 'antd';
 import { Input } from 'antd';
 import { Button } from 'antd';
 import * as actions from './actions';
-
-
+import { withRouter } from 'react-router-dom';
 class OrderDetailContainer extends React.Component {
-  componentWillMount(){
-    this.props.onGetOrderStore();
+  componentWillMount() {
+
+    const {
+      match: { params },
+      history,
+    } = this.props;
+    var id =history.location.pathname.substring(history.location.pathname.lastIndexOf("/")+1);
+    console.log(id);
+    this.props.onGetOrderStore(id);
   }
+
   render() {
     return (
       <div>
@@ -223,8 +230,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    onGetOrderStore: ()=>{
-      dispatch(actions.getOrderDetail());
+    onGetOrderStore: (id) => {
+      dispatch(actions.getOrderDetail(id));
     },
   };
 }
@@ -239,4 +246,5 @@ export default compose(
   withConnect,
   withReducer,
   withSaga,
+  withRouter
 )(OrderDetailContainer);

@@ -17,15 +17,12 @@ function* loginSaga() {
   };
   const resp = yield call(api.login, 'Stores/login',param);
   const { status, data } = resp;
-  console.log(resp);
   if (status === 200){
     // yield call(history.push("/ddd"));
 
     yield put(actions.loginSuccess(data));
     // yield spush('/order');
   } else {
-    console.log("loginFailed");
-
     yield put(actions.loginFailed());
   }
 }

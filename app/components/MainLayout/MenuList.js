@@ -38,7 +38,7 @@ const menus = [
     children: [
       {
         name: 'Tất cả sản phẩm',
-        key: 'product',
+        key: 'products',
       },
       {
         name: 'Thêm sản phẩm',

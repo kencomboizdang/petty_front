@@ -41,7 +41,6 @@ class OrderProductsContainer extends React.Component {
   };
 
   render() {
-    console.log(this.props.orderProductsContainer);
     return (
       <div>
         <Button onClick={this.chagenAPI}>Change</Button>

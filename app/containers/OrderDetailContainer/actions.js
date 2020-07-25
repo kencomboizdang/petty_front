@@ -11,9 +11,10 @@ export function defaultAction() {
     type: DEFAULT_ACTION,
   };
 }
-export const getOrderDetail=()=> {
+export const getOrderDetail=(id)=> {
   return {
     type: GET_ORDER_DETAIL,
+    id
   };
 }
 export const getOrderDetailSuccess=(data)=> {
