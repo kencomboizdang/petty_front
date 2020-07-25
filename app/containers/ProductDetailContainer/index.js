@@ -35,34 +35,10 @@ const options = [
   {
     value: 'zhejiang',
     label: 'Zhejiangss',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
   },
   {
     value: 'jiangsu',
     label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
   },
 ];
 
@@ -111,7 +87,7 @@ class ProductDetailContainer extends React.Component {
           >
             <Cascader
               name="category"
-              options={options}
+              options={this.props.productDetailContainer.options}
               onChange={this.handleChangeCategoryValue}
               value={product.category}
             />

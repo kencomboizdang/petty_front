@@ -17,6 +17,7 @@ export const initialState = {
     quantity: 0,
     img: '',
   },
+  options:[]
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -24,6 +25,7 @@ const productDetailContainerReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case DEFAULT_ACTION:
+
         return;
       case CHANGE_PRODUCT_VALUE:
         draft.product[action.payload.name] = action.payload.value;

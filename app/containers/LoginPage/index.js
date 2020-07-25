@@ -17,7 +17,9 @@ import reducer from './reducer';
 import saga from './saga';
 import './styles.scss';
 import Logo from '../../images/logo/logo_orange.png';
-
+import { useHistory } from 'react-router-dom';
+import * as actions from './actions';
+import { withRouter } from 'react-router-dom';
 const layout = {
   labelCol: {
     span: 8,
@@ -34,9 +36,45 @@ const tailLayout = {
 };
 
 class LoginPage extends React.Component {
-  clickToLogin = () => {
-    this.props.clickToLogin();
+  clickToLogin = async () => {
+    // this.props.clickToLogin();
+    // this.props.history.push('/order');
+    const {
+      match: { params },
+      history,
+    } = this.props;
+    // if ()
+    // history.push('/order');
+    // this.setState({
+    // demo:'',
+    // })
+    await this.props.onLogin();
+    this.setState({ abc: '' });
+
   };
+  onChange = event => {
+    var target = event.target;
+    var name = target.name;
+    var value = target.value;
+    // this.setState({
+    //   [name]:value,
+    // })
+    this.props.onChangeValue(name, value);
+  };
+
+  componentWillMount() {
+    // console.log(this.props.history);
+    // this.props.onGetHistory(this.props.history);
+  }
+  componentWillReceiveProps() {
+
+  }
+  componentDidUpdate() {
+    if (this.props.loginPage.data != '') {
+      location.reload();
+    }
+  }
+
   render() {
     return (
       <div className="container">
@@ -67,7 +105,7 @@ class LoginPage extends React.Component {
                   },
                 ]}
               >
-                <Input />
+                <Input name="username" onChange={this.onChange} />
               </Form.Item>
 
               <Form.Item
@@ -80,7 +118,7 @@ class LoginPage extends React.Component {
                   },
                 ]}
               >
-                <Input.Password />
+                <Input.Password name="password" onChange={this.onChange} />
               </Form.Item>
 
               <Form.Item
@@ -92,7 +130,11 @@ class LoginPage extends React.Component {
               </Form.Item>
 
               <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  onClick={this.clickToLogin}
+                >
                   Đăng nhập
                 </Button>
                 <Button type="link" htmlType="button">
@@ -118,6 +160,15 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    onChangeValue: (name, value) => {
+      dispatch(actions.onChangeValue(name, value));
+    },
+    onLogin: () => {
+      dispatch(actions.login());
+    },
+    onGetHistory: history => {
+      dispatch(actions.getHistory(history));
+    },
   };
 }
 
@@ -131,4 +182,5 @@ export default compose(
   withConnect,
   withReducer,
   withSaga,
+  withRouter,
 )(LoginPage);

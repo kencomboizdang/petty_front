@@ -3,6 +3,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import OrderProductsContainer from '../OrderProductsContainer';
+import OrderDetailContainer from '../OrderDetailContainer';
 import ProductDetailContainer from '../ProductDetailContainer';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import AuthContext from '../../utils/auth';
@@ -25,7 +26,7 @@ const routes = [
     path: '/order/:id',
     exact: true,
     private: true,
-    main: () => <OrderProductsContainer />,
+    main: () => <OrderDetailContainer />,
   },
   {
     path: '/product',
@@ -37,7 +38,7 @@ const routes = [
     path: '/login',
     exact: true,
     private: false,
-    main: () => <LoginPage />,
+    main: (history) => <LoginPage history/>,
   },
   {
     path: '',
