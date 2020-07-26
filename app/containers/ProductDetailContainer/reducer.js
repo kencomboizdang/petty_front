@@ -8,14 +8,15 @@ import {
   DEFAULT_ACTION,
   CHANGE_PRODUCT_VALUE,
   GET_PRODUCT_SUCCESS,
-  GET_CATEGORY,GET_CATEGORY_SUCCESS
+  GET_CATEGORY,GET_CATEGORY_SUCCESS, SAVE_PRODUCT_SUCCESS
 } from './constants';
 
 export const initialState = {
   product: {
     id: '',
-    category: null,
+    categoryId: null,
     name: '',
+    netWeight:'',
     description: '',
     brand: '',
     origin: '',
@@ -24,6 +25,7 @@ export const initialState = {
     img: '',
   },
   options: [],
+  onSave:false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -34,10 +36,11 @@ const productDetailContainerReducer = (state = initialState, action) =>
         return;
       case CHANGE_PRODUCT_VALUE:
         draft.product[action.payload.name] = action.payload.value;
+        draft.onSave= false;
         break;
       case GET_PRODUCT_SUCCESS:
         draft.product.id = action.data.id;
-        draft.product.category = action.data.categoryId;
+        draft.product.categoryId = action.data.categoryId;
         draft.product.name = action.data.name;
         draft.product.description = action.data.description;
         draft.product.brand = action.data.brand;
@@ -59,6 +62,9 @@ const productDetailContainerReducer = (state = initialState, action) =>
         });
         draft.options = catery;
         break;
+        case SAVE_PRODUCT_SUCCESS:
+        draft.onSave= true;
+break;
       default:
         return;
     }

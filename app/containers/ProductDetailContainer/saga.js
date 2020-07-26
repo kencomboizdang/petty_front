@@ -25,9 +25,28 @@ function* getProductDetail({ id }) {
     yield put(actions.getProductSuccess(data));
   }
 }
+function* saveProduct() {
+  const product = yield select(state => state.productDetailContainer.product);
+  console.log(product);
+  var res;
+  if (!product.id) {
+    res = yield call(api.post, 'Products/create', product);
+    const { status, data } = res;
+    if (status === 200) {
+      yield put(actions.saveProductSuccess());
+    }
+  } else {
+    res = yield call(api.put, 'Products/update', product);
+    const { status, data } = res;
+    if (status === 204) {
+      yield put(actions.saveProductSuccess());
+    }
+  }
+}
 // Individual exports for testing
 export default function* productDetailContainerSaga() {
   // See example in containers/HomePage/saga.js
   yield takeLatest(types.GET_CATEGORY, getCategory);
   yield takeLatest(types.GET_PRODUCT, getProductDetail);
+  yield takeLatest(types.SAVE_PRODUCT, saveProduct);
 }

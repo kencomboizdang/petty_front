@@ -30,15 +30,15 @@ import makeSelectProductDetailContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import './styles.scss';
-import { changeProductValue, getProduct,getCategory } from './actions';
+import { changeProductValue, getProduct, getCategory, saveProduct } from './actions';
 
 const options = [
   {
-    value: 'zhejiang',
+    value: 1,
     label: 'Zhejiangss',
   },
   {
-    value: 'jiangsu',
+    value: 2,
     label: 'Jiangsu',
   },
 ];
@@ -57,22 +57,22 @@ class ProductDetailContainer extends React.Component {
       this.props.onGetProductIfExist(id);
     }
   }
-
+  onSave = () => {};
   handleChangeValue = event => {
     var target = event.target;
     var name = target.name;
     var value = target.value;
-    console.log(name, value);
     this.props.handleChangeProductValue(name, value);
   };
   handleChangeCategoryValue = value => {
-    this.props.handleChangeProductValue('category', value);
+    this.props.handleChangeProductValue('categoryId', value[0]);
   };
   handleChangeQuantityValue = value => {
     this.props.handleChangeProductValue('quantity', value);
   };
   onFinish = () => {
     console.log('Finished');
+    this.props.onSaveProduct();
   };
   onFinishFailed = () => {
     console.log('Finish Failed');
@@ -80,7 +80,6 @@ class ProductDetailContainer extends React.Component {
 
   render() {
     const { product } = this.props.productDetailContainer;
-    console.log(this.props.productDetailContainer.options);
     const { TextArea } = Input;
     function onChange(value) {
       console.log('changed', value);
@@ -96,18 +95,24 @@ class ProductDetailContainer extends React.Component {
           onFinishFailed={this.onFinishFailed}
         >
           <div className="title">Thêm sản phẩm</div>
-          <Form.Item
-            label="Phân loại"
-            name="productCategory"
-            rules={rules.categoryRules}
-          >
-            <Cascader
-              name="category"
-              options={this.props.productDetailContainer.options}
-              onChange={this.handleChangeCategoryValue}
-              defaultValue={'4'}
-            />
-          </Form.Item>
+          {this.props.productDetailContainer.options ? (
+            <Form.Item
+              label="Phân loại"
+              name="productCategory"
+              rules={rules.categoryRules}
+            >
+              <Cascader
+                defaultValue={[1]}
+                name="category"
+                // options={this.props.productDetailContainer.options}
+                options={this.props.productDetailContainer.options}
+                onChange={this.handleChangeCategoryValue}
+              />
+            </Form.Item>
+          ) : (
+            ''
+          )}
+
           <Form.Item
             // label="Tên sản phẩm"
             // rules={[
@@ -125,10 +130,7 @@ class ProductDetailContainer extends React.Component {
               onChange={this.handleChangeValue}
             />
           </Form.Item>
-          <Form.Item
-            label="Mô tả sản phẩm"
-            rules={rules.descriptionRules}
-          >
+          <Form.Item label="Mô tả sản phẩm" rules={rules.descriptionRules}>
             <TextArea
               rows={4}
               name="description"
@@ -137,7 +139,7 @@ class ProductDetailContainer extends React.Component {
             />
           </Form.Item>
           <FormItem label="Thương hiệu">
-          <Input
+            <Input
               name="brand"
               value={product.brand}
               onChange={this.handleChangeValue}
@@ -153,6 +155,19 @@ class ProductDetailContainer extends React.Component {
             <Input
               name="origin"
               value={product.origin}
+              onChange={this.handleChangeValue}
+            />
+          </FormItem>
+          <FormItem label="Khối lượng">
+            {/* <Select>
+              <Select.Option value="op1">Trung Quốc</Select.Option>
+              <Select.Option value="op2">Việt Nam</Select.Option>
+              <Select.Option value="op3">Hàn Quốc</Select.Option>
+              <Select.Option value="op4">Mỹ</Select.Option>
+            </Select> */}
+            <Input
+              name="netWeight"
+              value={product.netWeight}
               onChange={this.handleChangeValue}
             />
           </FormItem>
@@ -187,7 +202,9 @@ class ProductDetailContainer extends React.Component {
             <PicturesWall />
           </Form.Item> */}
           <Form.Item label=" " colon={false}>
-            <Button htmlType="submit">Lưu lại</Button>
+            <Button htmlType="submit" onClick={this.onSave}>
+              Lưu lại
+            </Button>
             <Button>Huỷ</Button>
           </Form.Item>
         </Form>
@@ -213,6 +230,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(getProduct(id));
     },
     getCategory: () => dispatch(getCategory()),
+    onSaveProduct: ()=> dispatch(saveProduct()),
   };
 }
 const withReducer = injectReducer({ key: 'productDetailContainer', reducer });
