@@ -44,11 +44,11 @@ class ProductListContainer extends React.Component {
         >
           <div class="p-2 bd-highlight"> </div>
         </div>
-        <Search
+        {/* <Search
           placeholder="input search text"
           onSearch={value => console.log(value)}
           style={{ width: 200 }}
-        />
+        /> */}
         <div className="container">
           <div
             class="d-flex flex-row bd-highlight mb-3"
@@ -56,7 +56,7 @@ class ProductListContainer extends React.Component {
           >
             {' '}
             <div class="p-2 bd-highlight">
-              <h3>0 Sản phẩm</h3>
+              <h3>Danh sách sản phẩm</h3>
             </div>
           </div>
           <TableProductsComponent data={this.props.productListContainer.data} />

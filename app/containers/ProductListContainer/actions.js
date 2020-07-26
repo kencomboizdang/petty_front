@@ -24,3 +24,13 @@ export const getProductsSucess = (data) => {
     },
   };
 };
+
+export const changeProductValue = (name, value) => {
+  return {
+    type: CHANGE_PRODUCT_VALUE,
+    payload: {
+      name,
+      value,
+    },
+  };
+};

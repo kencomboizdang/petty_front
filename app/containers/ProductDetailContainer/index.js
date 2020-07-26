@@ -19,6 +19,7 @@ import {
   Cascader,
   InputNumber,
   Breadcrumb,
+  message
 } from 'antd';
 // import "./stylesTab.css";
 import * as rules from './rules';
@@ -70,9 +71,16 @@ class ProductDetailContainer extends React.Component {
   handleChangeQuantityValue = value => {
     this.props.handleChangeProductValue('quantity', value);
   };
-  onFinish = () => {
+  handleChangePriceValue = value => {
+    this.props.handleChangeProductValue('price', value);
+  };
+  onFinish = async () => {
     console.log('Finished');
-    this.props.onSaveProduct();
+    await this.props.onSaveProduct();
+    message.info('Đã lưu lại');
+    if (this.props.productDetailContainer.onSave){
+      message.info('Đã lưu lại');
+    }
   };
   onFinishFailed = () => {
     console.log('Finish Failed');
@@ -94,7 +102,7 @@ class ProductDetailContainer extends React.Component {
           onFinish={this.onFinish}
           onFinishFailed={this.onFinishFailed}
         >
-          <div className="title">Thêm sản phẩm</div>
+          <div className="title">Sản phẩm</div>
           {this.props.productDetailContainer.options ? (
             <Form.Item
               label="Phân loại"
@@ -175,12 +183,13 @@ class ProductDetailContainer extends React.Component {
             VND
             <InputNumber
               className="form_input__price"
+              name="price"
               defaultValue={product.price}
               formatter={value =>
                 `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
               }
               parser={value => value.replace(/\VND\s?|(,*)/g, '')}
-              onChange={onChange}
+              onChange={this.handleChangePriceValue}
               step={1000}
             />
           </Form.Item>

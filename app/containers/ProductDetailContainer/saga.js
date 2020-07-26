@@ -26,17 +26,21 @@ function* getProductDetail({ id }) {
   }
 }
 function* saveProduct() {
-  const product = yield select(state => state.productDetailContainer.product);
-  console.log(product);
+  var product = yield select(state => state.productDetailContainer.product);
+
   var res;
   if (!product.id) {
     res = yield call(api.post, 'Products/create', product);
     const { status, data } = res;
+    console.log(data);
     if (status === 200) {
       yield put(actions.saveProductSuccess());
     }
   } else {
+    console.log("ASD");
     res = yield call(api.put, 'Products/update', product);
+    console.log("ASDs");
+
     const { status, data } = res;
     if (status === 204) {
       yield put(actions.saveProductSuccess());

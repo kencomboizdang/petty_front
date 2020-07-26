@@ -47,19 +47,6 @@ class OrderProductsContainer extends React.Component {
         <InputSearch />
         <Tabs tabPosition={this.state.tabPosition}>
           <TabPane tab="Tất cả" key="1">
-            <div className="row">
-              <div className="col-xs-8 col-sm-8 col-md-8 col-lg-6">
-                <InputSearch />
-              </div>
-              <div className="col-xs-6 col-sm-6 col-md-8 col-lg-6">
-                <div className="search">
-                  <div className="calendar">
-                    <CanlendarComponent />
-                  </div>
-                  <Button>Tìm kiếm</Button>
-                </div>
-              </div>
-            </div>
             <TableComponent data={this.props.orderProductsContainer.data}/>
           </TabPane>
           <TabPane tab="Chờ xác nhận" key="2">

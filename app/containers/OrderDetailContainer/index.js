@@ -53,7 +53,7 @@ class OrderDetailContainer extends React.Component {
         <div
           className="Products"
           style={{
-            width: '658px',
+            width: '850px',
             boxSizing: 'border-box',
             border: '1px solid gray',
             boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.3)',
@@ -61,7 +61,7 @@ class OrderDetailContainer extends React.Component {
             float: 'left',
           }}
         >
-          <div className="d-flex flex-column bd-highlight mb-3">
+          <div className="d-flex flex-column bd-highlight mb-3" >
             <div className="p-2 bd-highlight">
               <div className="d-flex flex-row bd-highlight mb-3">
                 <div className="p-2 bd-highlight">
@@ -80,10 +80,7 @@ class OrderDetailContainer extends React.Component {
                 className="d-flex flex-row bd-highlight mb-3"
                 style={{ boxSizing: 'border-box' }}
               >
-                <div className="p-2 bd-highlight">
-                  {' '}
-                  <InputComponent text={'Tìm sản phẩm'} />
-                </div>
+
               </div>
             </div>
           </div>
