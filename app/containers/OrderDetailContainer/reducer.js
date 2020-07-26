@@ -4,7 +4,7 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION, GET_ORDER_DETAIL_SUCCESS } from './constants';
+import { DEFAULT_ACTION, GET_ORDER_DETAIL_SUCCESS, SET_STATUS_SUCCESS } from './constants';
 
 export const initialState = {
   data:"",
@@ -19,6 +19,8 @@ const orderDetailContainerReducer = (state = initialState, action) =>
       case GET_ORDER_DETAIL_SUCCESS:
         draft.data = action.data;
         break;
+      case SET_STATUS_SUCCESS:
+        draft.data.orderStatus= 'ship';
     }
   });
 

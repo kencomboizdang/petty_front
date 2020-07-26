@@ -15,19 +15,21 @@ class TableProductsComponent extends React.Component {
     const columns = [
       {
         title: "Mã",
-        dataIndex: "id",
+        dataIndex: "product",
         key: "id",
-        render: (text) => <a>{text}</a>,
+        render: (text) => <a>{text.id}</a>,
       },
       {
         title: "Tên sản phẩm",
-        dataIndex: "product.name",
+        dataIndex: "product",
         key: "name",
+        render:(text)=><p>{text.name}</p>
       },
       {
         title: "Thương hiệu",
-        dataIndex: "product.brand",
-        key: "brand",
+        dataIndex: "product",
+        key: "note",
+        render:(text)=><p>{text.brand}</p>
       },
       {
         title: "Số lượng",
@@ -36,8 +38,14 @@ class TableProductsComponent extends React.Component {
       },
       {
         title: "Đơn giá",
-        dataIndex: "product.price",
+        dataIndex: "product",
         key: "brand",
+      render:(text)=><p>{text.price}</p>
+      },
+      {
+        title: "Tổng",
+        dataIndex: "price",
+        key: "price",
       },
     ];
     return (

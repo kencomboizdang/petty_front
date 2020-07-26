@@ -12,3 +12,17 @@ export const login = (url,params = {}) => {
   }
   return axiosService.post(`${API_ENDPOINT}/${url}${queryParams}`);
 };
+export const post = (url,params = {}) => {
+  let queryParams = '';
+  if (Object.keys(params).length > 0) {
+    queryParams = `?${qs.stringify(params)}`;
+  }
+  return axiosService.post(`${API_ENDPOINT}/${url}${queryParams}`);
+};
+export const put = (url,params = {}) => {
+  let queryParams = '';
+  if (Object.keys(params).length > 0) {
+    queryParams = `?${qs.stringify(params)}`;
+  }
+  return axiosService.put(`${API_ENDPOINT}/${url}${queryParams}`);
+};

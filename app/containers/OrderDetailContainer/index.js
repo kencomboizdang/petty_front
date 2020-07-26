@@ -19,6 +19,7 @@ import * as actions from './actions';
 import { withRouter } from 'react-router-dom';
 import { addNamed } from '@babel/helper-module-imports';
 import momment from 'moment';
+import TextArea from 'antd/lib/input/TextArea';
 // addNamed('/', 'named', 'source', { nameHint: "hintedName" });
 
 const dateFormat = 'YYYY/MM/DD';
@@ -34,16 +35,18 @@ class OrderDetailContainer extends React.Component {
     // this.props.onGetOrderStore(id);
     this.ongetData(id);
   }
-  ongetData= async(id)=>{
+  ongetData = async id => {
     await this.props.onGetOrderStore(id);
-  }
-
+  };
+  onSetStatus = () => {
+    this.props.onSetStatus();
+  };
 
   render() {
     const { data } = this.props.orderDetailContainer;
     console.log(data);
-    if (!data){
-      return <div></div>;
+    if (!data) {
+      return <div />;
     }
     return (
       <div>
@@ -84,21 +87,24 @@ class OrderDetailContainer extends React.Component {
               </div>
             </div>
           </div>
-          <TableProductsDetailComponent data = {data ? data.orderProductDetails : ''} />
+          <TableProductsDetailComponent
+            data={data ? data.orderProductDetails : ''}
+          />
           <div
             className="Button-TextArea"
             style={{ float: 'left', boxSizing: 'border-box', width: '658px' }}
           >
-            <Button type="primary" style={{ float: 'left' }}>
-              ĐÃ GIAO HÀNG
+            <Button
+              type="primary"
+              style={{ float: 'left' }}
+              onClick={this.onSetStatus}
+              disabled={data.orderStatus == 'ship' ? true : false}
+            >
+              {data.orderStatus == 'ship'
+                ? 'Đã tiếp nhận đơn hàng'
+                : 'Tiếp nhận đơn hàng'}
             </Button>
           </div>
-          <textarea
-            class="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            style={{ float: 'left', boxSizing: 'border-box', width: '658px' }}
-          />
         </div>
 
         <div
@@ -262,6 +268,25 @@ class OrderDetailContainer extends React.Component {
                 />
               </div>
             </div>
+            <div
+              className="d-flex flex-row bd-highlight mb-3"
+              style={{ marginLeft: '20px' }}
+            >
+              <div className="p-2 bd-highlight">
+                Ghi chú
+                <TextArea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="5"
+                  style={{
+                    float: 'left',
+                    boxSizing: 'border-box',
+                    width: '200%',
+                  }}
+                  defaultValue={data ? data.note : ''}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -282,6 +307,9 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     onGetOrderStore: id => {
       dispatch(actions.getOrderDetail(id));
+    },
+    onSetStatus: () => {
+      dispatch(actions.setStatus());
     },
   };
 }
