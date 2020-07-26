@@ -16,7 +16,7 @@ const menus = [
     name: 'Cửa hàng',
     key: 'profile',
     icon: <UserOutlined />,
-    children:[
+    children: [
       {
         name: 'Tổng quan',
         key: 'overall',
@@ -25,7 +25,7 @@ const menus = [
         name: 'Thông tin cửa hàng',
         key: 'store-profile',
       },
-    ]
+    ],
   },
   {
     name: 'Quản lý đơn hàng',
@@ -39,10 +39,6 @@ const menus = [
       {
         name: 'Xử lý đơn hàng',
         key: 'order-process',
-      },
-      {
-        name: 'Trả hàng/Hoàn tiền',
-        key: 'cancelation',
       },
     ],
   },
@@ -59,20 +55,16 @@ const menus = [
         name: 'Thêm sản phẩm',
         key: 'add-product',
       },
-      {
-        name: 'Sản phẩm vi phạm',
-        key: 'product-cancelation',
-      },
     ],
   },
 ];
 class MenuList extends React.Component {
-  rootSubmenuKeys = ['product-management', 'order-management','store-profile'];
+  rootSubmenuKeys = ['product-management', 'order-management', 'profile'];
 
   constructor(props) {
     super(props);
     this.state = {
-      openKeys: ['product-management', 'order-management'],
+      openKeys: ['product-management', 'order-management', 'profile'],
     };
   }
   onOpenChange = openKeys => {
@@ -108,7 +100,12 @@ class MenuList extends React.Component {
     var result = null;
     result = menus.map((menu, index) => {
       return (
-        <SubMenu key={menu.key} icon={menu.icon} title={menu.name} className='sub-menu'>
+        <SubMenu
+          key={menu.key}
+          icon={menu.icon}
+          title={menu.name}
+          className="sub-menu"
+        >
           {this.showSubMenu(menu.children)}
         </SubMenu>
       );

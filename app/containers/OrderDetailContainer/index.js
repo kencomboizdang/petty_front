@@ -21,7 +21,7 @@ import { addNamed } from '@babel/helper-module-imports';
 import momment from 'moment';
 import TextArea from 'antd/lib/input/TextArea';
 // addNamed('/', 'named', 'source', { nameHint: "hintedName" });
-
+import './styles.scss';
 const dateFormat = 'YYYY/MM/DD';
 class OrderDetailContainer extends React.Component {
   componentWillMount() {
@@ -49,7 +49,7 @@ class OrderDetailContainer extends React.Component {
       return <div />;
     }
     return (
-      <div>
+      <div className="main-container">
         <div
           className="Products"
           style={{
@@ -95,6 +95,7 @@ class OrderDetailContainer extends React.Component {
             style={{ float: 'left', boxSizing: 'border-box', width: '658px' }}
           >
             <Button
+            className="button-accept"
               type="primary"
               style={{ float: 'left' }}
               onClick={this.onSetStatus}
@@ -106,185 +107,186 @@ class OrderDetailContainer extends React.Component {
             </Button>
           </div>
         </div>
+        <div className="sub-container">
+          <div
+            className="Customers"
+            style={{
+              width: '558px',
 
-        <div
-          className="Customers"
-          style={{
-            width: '558px',
+              boxSizing: 'border-box',
+              border: '1px solid gray',
+              boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.3)',
+              borderRadius: '5px',
+              float: 'right',
+            }}
+          >
+            <div className="d-flex flex-column bd-highlight mb-3">
+              <div className="p-2 bd-highlight">
+                {' '}
+                <div className="d-flex flex-row bd-highlight mb-3">
+                  <div className="p-2 bd-highlight">
+                    {' '}
+                    <img
+                      src="https://image.flaticon.com/icons/svg/126/126486.svg"
+                      className="sidebar-menu-item-icon"
+                      style={{ width: '15px', height: '15px' }}
+                    />
+                  </div>
 
-            boxSizing: 'border-box',
-            border: '1px solid gray',
-            boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.3)',
-            borderRadius: '5px',
-            float: 'right',
-          }}
-        >
-          <div className="d-flex flex-column bd-highlight mb-3">
-            <div className="p-2 bd-highlight">
-              {' '}
+                  <div className="p-2 bd-highlight">
+                    <span style={{ marginBottom: '10px', marginTop: '10px' }}>
+                      THÔNG TIN KHÁCH HÀNG
+                    </span>
+                  </div>
+                </div>
+                <div className="d-flex flex-row bd-highlight mb-3">
+                  <div className="p-2 bd-highlight">
+                    Tên khách hàng
+                    <Input
+                      placeholder="Tên khách hàng"
+                      defaultValue={
+                        data
+                          ? data.address.customer.firstName +
+                            ' ' +
+                            data.address.customer.lastName
+                          : ''
+                      }
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="p-2 bd-highlight" style={{ marginLeft: '1%' }}>
+                Email
+                <Input
+                  placeholder="Địa chỉ Email"
+                  defaultValue={data ? data.address.customer.email : ''}
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="Address"
+            style={{
+              width: '558px',
+
+              boxSizing: 'border-box',
+              border: '1px solid gray',
+              boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.3)',
+              borderRadius: '5px',
+              float: 'right',
+            }}
+          >
+            <div className="d-flex flex-column bd-highlight mb-3">
               <div className="d-flex flex-row bd-highlight mb-3">
                 <div className="p-2 bd-highlight">
                   {' '}
                   <img
-                    src="https://image.flaticon.com/icons/svg/126/126486.svg"
+                    src="https://image.flaticon.com/icons/svg/157/157933.svg"
                     className="sidebar-menu-item-icon"
                     style={{ width: '15px', height: '15px' }}
                   />
                 </div>
-
                 <div className="p-2 bd-highlight">
-                  <span style={{ marginBottom: '10px', marginTop: '10px' }}>
-                    THÔNG TIN KHÁCH HÀNG
+                  <span style={{ marginBottom: '10px' }}>
+                    THÔNG TIN NHẬN HÀNG
                   </span>
                 </div>
               </div>
-              <div className="d-flex flex-row bd-highlight mb-3">
+              <div
+                className="d-flex flex-row bd-highlight mb-3"
+                style={{ marginLeft: '20px' }}
+              >
                 <div className="p-2 bd-highlight">
-                  Tên khách hàng
+                  <img
+                    src="https://image.flaticon.com/icons/svg/845/845998.svg"
+                    className="sidebar-menu-item-icon"
+                    style={{ width: '10px', height: '10px' }}
+                  />
+                </div>
+                <div className="p-2 bd-highlight">Ngày đặt hàng</div>
+                <div className="p-2 bd-highlight">
+                  <DatePicker defaultValue={data ? momment(data.date) : ''} />
+                </div>
+              </div>
+              <div
+                className="d-flex flex-row bd-highlight mb-3"
+                style={{ marginLeft: '20px' }}
+              >
+                <div className="p-2 bd-highlight">
+                  {' '}
+                  Tên người nhận
                   <Input
-                    placeholder="Tên khách hàng"
-                    defaultValue={
-                      data
-                        ? data.address.customer.firstName +
-                          ' ' +
-                          data.address.customer.lastName
-                        : ''
-                    }
-                    disabled
+                    placeholder=""
+                    defaultValue={data ? data.address.name : ''}
+                  />
+                </div>
+                <div className="p-2 bd-highlight">
+                  Số điện thoại
+                  <Input
+                    placeholder="Số Điện Thoại"
+                    defaultValue={data ? data.address.phone : ''}
                   />
                 </div>
               </div>
-            </div>
-            <div className="p-2 bd-highlight" style={{ marginLeft: '1%' }}>
-              Email
-              <Input
-                placeholder="Địa chỉ Email"
-                defaultValue={data ? data.address.customer.email : ''}
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className="Address"
-          style={{
-            width: '558px',
-
-            boxSizing: 'border-box',
-            border: '1px solid gray',
-            boxShadow: '0px 0px 0px 1px rgba(0,0,0,0.3)',
-            borderRadius: '5px',
-            float: 'right',
-          }}
-        >
-          <div className="d-flex flex-column bd-highlight mb-3">
-            <div className="d-flex flex-row bd-highlight mb-3">
-              <div className="p-2 bd-highlight">
-                {' '}
-                <img
-                  src="https://image.flaticon.com/icons/svg/157/157933.svg"
-                  className="sidebar-menu-item-icon"
-                  style={{ width: '15px', height: '15px' }}
-                />
+              <div
+                className="d-flex flex-row bd-highlight mb-3"
+                style={{ marginLeft: '20px' }}
+              >
+                <div className="p-2 bd-highlight">
+                  {' '}
+                  Địa chỉ
+                  <Input
+                    placeholder="Địa chỉ"
+                    defaultValue={data ? data.address.detail : ''}
+                  />
+                </div>
               </div>
-              <div className="p-2 bd-highlight">
-                <span style={{ marginBottom: '10px' }}>
-                  THÔNG TIN NHẬN HÀNG
-                </span>
+              <div
+                className="d-flex flex-row bd-highlight mb-3"
+                style={{ marginLeft: '20px' }}
+              >
+                <div className="p-2 bd-highlight">
+                  {' '}
+                  Thành Phố
+                  <Input
+                    placeholder="Thành Phố"
+                    defaultValue={data ? data.address.province : ''}
+                  />
+                </div>
+                <div className="p-2 bd-highlight">
+                  Quận Huyện
+                  <Input
+                    placeholder="Quận Huyện"
+                    defaultValue={data ? data.address.ward : ''}
+                  />
+                </div>
+                <div className="p-2 bd-highlight">
+                  Phường Xã
+                  <Input
+                    placeholder="Phường Xã"
+                    defaultValue={data ? data.address.district : ''}
+                  />
+                </div>
               </div>
-            </div>
-            <div
-              className="d-flex flex-row bd-highlight mb-3"
-              style={{ marginLeft: '20px' }}
-            >
-              <div className="p-2 bd-highlight">
-                <img
-                  src="https://image.flaticon.com/icons/svg/845/845998.svg"
-                  className="sidebar-menu-item-icon"
-                  style={{ width: '10px', height: '10px' }}
-                />
-              </div>
-              <div className="p-2 bd-highlight">Ngày đặt hàng</div>
-              <div className="p-2 bd-highlight">
-                <DatePicker defaultValue={data ? momment(data.date) : ''} />
-              </div>
-            </div>
-            <div
-              className="d-flex flex-row bd-highlight mb-3"
-              style={{ marginLeft: '20px' }}
-            >
-              <div className="p-2 bd-highlight">
-                {' '}
-                Tên người nhận
-                <Input
-                  placeholder=""
-                  defaultValue={data ? data.address.name : ''}
-                />
-              </div>
-              <div className="p-2 bd-highlight">
-                Số điện thoại
-                <Input
-                  placeholder="Số Điện Thoại"
-                  defaultValue={data ? data.address.phone : ''}
-                />
-              </div>
-            </div>
-            <div
-              className="d-flex flex-row bd-highlight mb-3"
-              style={{ marginLeft: '20px' }}
-            >
-              <div className="p-2 bd-highlight">
-                {' '}
-                Địa chỉ
-                <Input
-                  placeholder="Địa chỉ"
-                  defaultValue={data ? data.address.detail : ''}
-                />
-              </div>
-            </div>
-            <div
-              className="d-flex flex-row bd-highlight mb-3"
-              style={{ marginLeft: '20px' }}
-            >
-              <div className="p-2 bd-highlight">
-                {' '}
-                Thành Phố
-                <Input
-                  placeholder="Thành Phố"
-                  defaultValue={data ? data.address.province : ''}
-                />
-              </div>
-              <div className="p-2 bd-highlight">
-                Quận Huyện
-                <Input
-                  placeholder="Quận Huyện"
-                  defaultValue={data ? data.address.ward : ''}
-                />
-              </div>
-              <div className="p-2 bd-highlight">
-                Phường Xã
-                <Input
-                  placeholder="Phường Xã"
-                  defaultValue={data ? data.address.district : ''}
-                />
-              </div>
-            </div>
-            <div
-              className="d-flex flex-row bd-highlight mb-3"
-              style={{ marginLeft: '20px' }}
-            >
-              <div className="p-2 bd-highlight">
-                Ghi chú
-                <TextArea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="5"
-                  style={{
-                    float: 'left',
-                    boxSizing: 'border-box',
-                    width: '200%',
-                  }}
-                  defaultValue={data ? data.note : ''}
-                />
+              <div
+                className="d-flex flex-row bd-highlight mb-3"
+                style={{ marginLeft: '20px' }}
+              >
+                <div className="p-2 bd-highlight">
+                  Ghi chú
+                  <TextArea
+                    class="form-control"
+                    id="exampleFormControlTextarea1"
+                    rows="5"
+                    style={{
+                      float: 'left',
+                      boxSizing: 'border-box',
+                      width: '200%',
+                    }}
+                    defaultValue={data ? data.note : ''}
+                  />
+                </div>
               </div>
             </div>
           </div>

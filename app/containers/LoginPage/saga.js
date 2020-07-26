@@ -4,8 +4,6 @@ import { takeLatest, select, put, call, push } from 'redux-saga/effects';
 import * as types from './constants';
 import * as api from 'utils/api';
 import * as actions from './actions';
-import { push as xpush} from 'connected-react-router';
-import { push as spush} from 'react-router-redux';
 import history from './history';
 // Individual exports for testing
 function* loginSaga() {

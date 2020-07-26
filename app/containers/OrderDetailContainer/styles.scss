@@ -1,0 +1,13 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+.sub-container {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.button-accept {
+  margin-left: 40px;
+}

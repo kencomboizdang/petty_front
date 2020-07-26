@@ -30,8 +30,9 @@ import saga from './saga';
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
 import { size } from 'lodash';
 import * as actions from './actions';
+import Search from 'antd/lib/transfer/search';
 class ProductListContainer extends React.Component {
-  componentWillMount(){
+  componentWillMount() {
     this.props.onGetProduct();
   }
   render() {
@@ -41,96 +42,13 @@ class ProductListContainer extends React.Component {
           class="d-flex flex-row bd-highlight mb-3"
           style={{ width: 'auto' }}
         >
-          <div class="p-2 bd-highlight">
-            {' '}
-            <Input.Group compact>
-              <div
-                class="d-flex flex-row bd-highlight mb-3"
-                style={{ width: 'auto' }}
-              >
-                <div class="p-2 bd-highlight">
-                  {' '}
-                  <Select defaultValue="Tên Sản Phẩm" width="30%">
-                    <Option value="ProductName">Tên Sản Phẩm</Option>
-                    <Option value="ProductNumber">Mã Sản Phẩm</Option>
-                  </Select>
-                </div>
-                <div class="p-2 bd-highlight">
-                  {' '}
-                  <Input width="50%" defaultValue="Nhập mã sản phẩm" />
-                </div>
-              </div>
-            </Input.Group>
-          </div>
-          <div class="p-2 bd-highlight" style={{ marginLeft: '50%' }}>
-            Danh mục{' '}
-            <Select style={{ width: '100px' }} defaultValue="Home">
-              <Option value="Home">Home</Option>
-              <Option value="Company">Company</Option>
-            </Select>
-          </div>
+          <div class="p-2 bd-highlight"> </div>
         </div>
-
-        <div
-          class="d-flex flex-row bd-highlight mb-3"
-          style={{ border: '1px solid black' }}
-        >
-          <div class="p-2 bd-highlight">
-            Kho Hàng{' '}
-            <Input
-              style={{ width: 100, textAlign: 'center' }}
-              placeholder="Minimum"
-            />
-            <Input
-              className="site-input-split"
-              style={{
-                width: 30,
-                borderLeft: 0,
-                borderRight: 0,
-                pointerEvents: 'none',
-              }}
-              placeholder="~"
-              disabled
-            />
-            <Input
-              className="site-input-right"
-              style={{
-                width: 100,
-                textAlign: 'center',
-              }}
-              placeholder="Maximum"
-            />
-          </div>
-          <div class="p-2 bd-highlight">
-            Đã bán
-            <Input
-              style={{ width: 100, textAlign: 'center' }}
-              placeholder="Minimum"
-            />
-            <Input
-              className="site-input-split"
-              style={{
-                width: 30,
-                borderLeft: 0,
-                borderRight: 0,
-                pointerEvents: 'none',
-              }}
-              placeholder="~"
-              disabled
-            />
-            <Input
-              className="site-input-right"
-              style={{
-                width: 100,
-                textAlign: 'center',
-              }}
-              placeholder="Maximum"
-            />
-          </div>
-        </div>
-        <Button type="primary" icon={<SearchOutlined />}>
-          Tìm
-        </Button>
+        <Search
+          placeholder="input search text"
+          onSearch={value => console.log(value)}
+          style={{ width: 200 }}
+        />
         <div className="container">
           <div
             class="d-flex flex-row bd-highlight mb-3"
@@ -139,17 +57,6 @@ class ProductListContainer extends React.Component {
             {' '}
             <div class="p-2 bd-highlight">
               <h3>0 Sản phẩm</h3>
-            </div>
-            <div class="p-2 bd-highlight">
-              <Button
-                type="primary"
-                shape="round"
-                icon={<PlusOutlined />}
-                size={size}
-                style={{ float: 'right' }}
-              >
-                Download
-              </Button>
             </div>
           </div>
           <TableProductsComponent data={this.props.productListContainer.data} />
@@ -170,9 +77,9 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    onGetProduct:()=>{
-      dispatch(actions.getAllProducts())
-    }
+    onGetProduct: () => {
+      dispatch(actions.getAllProducts());
+    },
   };
 }
 const withReducer = injectReducer({ key: 'productListContainer', reducer });

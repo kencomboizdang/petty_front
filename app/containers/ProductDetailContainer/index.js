@@ -183,9 +183,9 @@ class ProductDetailContainer extends React.Component {
               <Radio value={2}>Mới</Radio>
             </Radio.Group>
           </Form.Item> */}
-          <Form.Item label="Hình ảnh">
+          {/* <Form.Item label="Hình ảnh">
             <PicturesWall />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item label=" " colon={false}>
             <Button htmlType="submit">Lưu lại</Button>
             <Button>Huỷ</Button>
