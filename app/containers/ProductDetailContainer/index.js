@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
 import {
   Form,
   Input,
@@ -29,7 +30,7 @@ import makeSelectProductDetailContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import './styles.scss';
-import { changeProductValue } from './actions';
+import { changeProductValue, getProduct,getCategory } from './actions';
 
 const options = [
   {
@@ -43,6 +44,20 @@ const options = [
 ];
 
 class ProductDetailContainer extends React.Component {
+  componentWillMount() {
+    this.props.getCategory();
+    const {
+      match: { params },
+      history,
+    } = this.props;
+    var id = history.location.pathname.substring(
+      history.location.pathname.lastIndexOf('/') + 1,
+    );
+    if (id) {
+      this.props.onGetProductIfExist(id);
+    }
+  }
+
   handleChangeValue = event => {
     var target = event.target;
     var name = target.name;
@@ -65,6 +80,7 @@ class ProductDetailContainer extends React.Component {
 
   render() {
     const { product } = this.props.productDetailContainer;
+    console.log(this.props.productDetailContainer.options);
     const { TextArea } = Input;
     function onChange(value) {
       console.log('changed', value);
@@ -89,7 +105,7 @@ class ProductDetailContainer extends React.Component {
               name="category"
               options={this.props.productDetailContainer.options}
               onChange={this.handleChangeCategoryValue}
-              value={product.category}
+              defaultValue={'4'}
             />
           </Form.Item>
           <Form.Item
@@ -101,7 +117,6 @@ class ProductDetailContainer extends React.Component {
             //   },
             // ]}
             label="Tên sản phẩm"
-            name="productName"
             rules={rules.nameRules}
           >
             <Input
@@ -112,7 +127,6 @@ class ProductDetailContainer extends React.Component {
           </Form.Item>
           <Form.Item
             label="Mô tả sản phẩm"
-            name="productDescription"
             rules={rules.descriptionRules}
           >
             <TextArea
@@ -123,26 +137,30 @@ class ProductDetailContainer extends React.Component {
             />
           </Form.Item>
           <FormItem label="Thương hiệu">
-            <Select>
-              <Select.Option value="op1">Puma</Select.Option>
-              <Select.Option value="op2">Pamu</Select.Option>
-              <Select.Option value="op3">Mupa</Select.Option>
-              <Select.Option value="op4">Mapu</Select.Option>
-            </Select>
+          <Input
+              name="brand"
+              value={product.brand}
+              onChange={this.handleChangeValue}
+            />
           </FormItem>
           <FormItem label="Xuất Xứ">
-            <Select>
+            {/* <Select>
               <Select.Option value="op1">Trung Quốc</Select.Option>
               <Select.Option value="op2">Việt Nam</Select.Option>
               <Select.Option value="op3">Hàn Quốc</Select.Option>
               <Select.Option value="op4">Mỹ</Select.Option>
-            </Select>
+            </Select> */}
+            <Input
+              name="origin"
+              value={product.origin}
+              onChange={this.handleChangeValue}
+            />
           </FormItem>
           <Form.Item label="Giá " className="form_label__price">
             VND
             <InputNumber
               className="form_input__price"
-              defaultValue={1000}
+              defaultValue={product.price}
               formatter={value =>
                 `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
               }
@@ -159,12 +177,12 @@ class ProductDetailContainer extends React.Component {
             />
           </Form.Item>
 
-          <Form.Item label="Tình Trạng Sử Dụng">
+          {/* <Form.Item label="Tình Trạng Sử Dụng">
             <Radio.Group name="radiogroup" defaultValue={1}>
               <Radio value={1}>Đã Sử Dụng</Radio>
               <Radio value={2}>Mới</Radio>
             </Radio.Group>
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item label="Hình ảnh">
             <PicturesWall />
           </Form.Item>
@@ -191,6 +209,10 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     handleChangeProductValue: (name, value) =>
       dispatch(changeProductValue(name, value)),
+    onGetProductIfExist: id => {
+      dispatch(getProduct(id));
+    },
+    getCategory: () => dispatch(getCategory()),
   };
 }
 const withReducer = injectReducer({ key: 'productDetailContainer', reducer });
@@ -204,4 +226,5 @@ export default compose(
   withConnect,
   withSaga,
   withReducer,
+  withRouter,
 )(ProductDetailContainer);

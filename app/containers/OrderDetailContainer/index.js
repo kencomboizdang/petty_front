@@ -1,9 +1,3 @@
-/**
- *
- * OrderDetailContainer
- *
- */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -23,6 +17,10 @@ import { Input } from 'antd';
 import { Button } from 'antd';
 import * as actions from './actions';
 import { withRouter } from 'react-router-dom';
+import { addNamed } from "@babel/helper-module-imports";
+// addNamed('/', 'named', 'source', { nameHint: "hintedName" });
+
+
 class OrderDetailContainer extends React.Component {
   componentWillMount() {
 
@@ -31,7 +29,6 @@ class OrderDetailContainer extends React.Component {
       history,
     } = this.props;
     var id =history.location.pathname.substring(history.location.pathname.lastIndexOf("/")+1);
-    console.log(id);
     this.props.onGetOrderStore(id);
   }
 
@@ -98,7 +95,7 @@ class OrderDetailContainer extends React.Component {
       <div
         className="Customers"
         style={{
-          width: '600px',
+          width: '558px',
 
           boxSizing: 'border-box',
           border: '1px solid gray',
@@ -128,13 +125,16 @@ class OrderDetailContainer extends React.Component {
             </div>
             <div class="d-flex flex-row bd-highlight mb-3">
               <div class="p-2 bd-highlight">
+                Tên khách hàng
                 <Input placeholder="Tên khách hàng" />
               </div>
               <div class="p-2 bd-highlight">
+                Số điện thoại
                 <Input placeholder="Số Điện Thoại" />
               </div>
               <div class="p-2 bd-highlight">
                 <Input.Group compact>
+                  Ngày sinh
                   <DatePicker
                     style={{ width: '100%' }}
                     hint="Chọn ngày sinh"
@@ -143,7 +143,8 @@ class OrderDetailContainer extends React.Component {
               </div>
             </div>
           </div>
-          <div class="p-2 bd-highlight">
+          <div class="p-2 bd-highlight" style={{ marginLeft: '1%' }}>
+            Email
             <Input placeholder="Địa chỉ Email" />
           </div>
         </div>
@@ -151,7 +152,7 @@ class OrderDetailContainer extends React.Component {
       <div
         className="Address"
         style={{
-          width: '600px',
+          width: '558px',
 
           boxSizing: 'border-box',
           border: '1px solid gray',
@@ -198,9 +199,11 @@ class OrderDetailContainer extends React.Component {
           >
             <div class="p-2 bd-highlight">
               {' '}
+              Tên người nhận
               <Input placeholder="Tên người nhận" />
             </div>
             <div class="p-2 bd-highlight">
+              Số điện thoại
               <Input placeholder="Số Điện Thoại" />
             </div>
           </div>
@@ -210,9 +213,11 @@ class OrderDetailContainer extends React.Component {
           >
             <div class="p-2 bd-highlight">
               {' '}
+              Địa chỉ
               <Input placeholder="Địa chỉ" />
             </div>
             <div class="p-2 bd-highlight">
+              Quốc gia
               <Input placeholder="Quốc gia" />
             </div>
           </div>
@@ -222,19 +227,21 @@ class OrderDetailContainer extends React.Component {
           >
             <div class="p-2 bd-highlight">
               {' '}
+              Thành Phố
               <Input placeholder="Thành Phố" />
             </div>
             <div class="p-2 bd-highlight">
+              Quận Huyện
               <Input placeholder="Quận Huyện" />
             </div>
             <div class="p-2 bd-highlight">
+              Phường Xã
               <Input placeholder="Phường Xã" />
             </div>
           </div>
         </div>
       </div>
-    </div>
-    );
+    </div>   );
   }
 }
 

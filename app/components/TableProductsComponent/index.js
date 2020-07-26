@@ -1,12 +1,12 @@
 import { Table, Tag, Space, Button } from "antd";
 import React from "react";
 import { Link } from 'react-router-dom';
-
-class TableComponent extends React.Component {
+class TableProductsComponent extends React.Component {
 
 
 
   openOrderDetail = (text)=>{
+    console.log("ASDSA");
     console.log(text);
   }
 
@@ -20,30 +20,25 @@ class TableComponent extends React.Component {
         render: (text) => <a>{text}</a>,
       },
       {
-        title: "Thời gian",
-        dataIndex: "date",
-        key: "date",
+        title: "Tên sản phẩm",
+        dataIndex: "name",
+        key: "name",
       },
       {
-        title: "Tổng",
-        dataIndex: "total",
-        key: "total",
-      },
-      {
-        title: "Tình trạng",
-        key: "orderStatus",
-        dataIndex: "orderStatus",
-
+        title: "Thương hiệu",
+        dataIndex: "brand",
+        key: "brand",
       },
       {
         title: "Action",
         key: "action",
         dataIndex:"id",
         render: (text, record) => {
-          let tmp =  `/order/${text}`;
+          let tmp =  `/products/${text}`;
           return (
           <Space size='middle'>
-            <Link to ={tmp}>Xem đơn hàng</Link>
+            <Link to ={tmp}>Xem sản phẩm</Link>
+            {/* <Button onClick={this.openOrderDetail({text})}>Xem đơn hàng</Button> */}
           </Space>);
         },
       },
@@ -56,4 +51,4 @@ class TableComponent extends React.Component {
   }
 }
 
-export default TableComponent;
+export default TableProductsComponent;

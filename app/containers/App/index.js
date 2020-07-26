@@ -29,7 +29,6 @@ class App extends React.Component {
   }
   componentWillMount() {
     var store = sessionStorage.getItem('store');
-    console.log(store);
     if (store != null) {
       this.setState({ isSignedIn: true });
       if (this.props.history.location.pathname == '/login') {

@@ -4,7 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, CHANGE_PRODUCT_VALUE, GET_CATEGORY, GET_CATEGORY_SUCCESS } from './constants';
+import { DEFAULT_ACTION, CHANGE_PRODUCT_VALUE, GET_CATEGORY, GET_CATEGORY_SUCCESS,GET_PRODUCT,GET_PRODUCT_SUCCESS } from './constants';
 
 export const defaultAction = () => {
   return {
@@ -25,3 +25,22 @@ export const getCategory=()=>{
     type: GET_CATEGORY,
   }
 }
+export const getProduct=(id)=>{
+  return {
+    type: GET_PRODUCT,
+    id
+  }
+}
+export const getProductSuccess=(data)=>{
+  return {
+    type: GET_PRODUCT_SUCCESS,
+    data
+  }
+}
+
+export const getCategorySuccess = data => {
+  return {
+    type: GET_CATEGORY_SUCCESS,
+    data,
+  };
+};

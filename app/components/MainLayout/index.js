@@ -59,6 +59,17 @@ class MainLayout extends React.Component {
                 onClick: this.toggle,
               },
             )} */}
+            <Button
+                type="primary"
+                style={{ padding: 0, float: 'right', margin: 15, width: '10%' }}
+              >
+                Log Out
+              </Button>
+              <p style={{ padding: 0, float: 'right', margin: 20 }}>
+                {' '}
+                Xin chào,
+                <span style={{ fontWeight: 'bold' }}>Nguyễn Minh Trí</span>
+              </p>
             </Header>
           ) : (
             ''

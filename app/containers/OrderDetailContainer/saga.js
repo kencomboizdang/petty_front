@@ -6,6 +6,8 @@ import * as actions from './actions';
 function* getOrderDetail({id}) {
   // See example in containers/HomePage/saga.js
   const resp = yield call(api.getDetail, `OrderProductStores/${id}`);
+  console.log(id);
+
   const { status, data } = resp;
   if (status === 200) {
     yield put(actions.getOrderDetailSuccess(data));

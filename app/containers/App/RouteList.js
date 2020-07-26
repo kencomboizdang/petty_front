@@ -42,6 +42,12 @@ const routes = [
     main: () => <ProductDetailContainer />,
   },
   {
+    path: '/products/:id',
+    exact: true,
+    private: true,
+    main: () => <ProductDetailContainer />,
+  },
+  {
     path: '/login',
     exact: true,
     private: false,
