@@ -43,13 +43,11 @@ class OrderProductsContainer extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={this.chagenAPI}>Change</Button>
-        <InputSearch />
         <Tabs tabPosition={this.state.tabPosition}>
           <TabPane tab="Tất cả" key="1">
             <TableComponent data={this.props.orderProductsContainer.data}/>
           </TabPane>
-          <TabPane tab="Chờ xác nhận" key="2">
+          {/* <TabPane tab="Chờ xác nhận" key="2">
             <TableComponent />
             <TableComponent />
             <TableComponent />
@@ -57,7 +55,7 @@ class OrderProductsContainer extends React.Component {
           </TabPane>
           <TabPane tab="Đang giao" key="3">
             <TableComponent />
-          </TabPane>
+          </TabPane> */}
         </Tabs>
       </div>
     );

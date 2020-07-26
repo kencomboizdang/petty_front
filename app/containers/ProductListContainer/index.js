@@ -37,28 +37,18 @@ class ProductListContainer extends React.Component {
   }
   render() {
     return (
-      <div style={{ border: '1px solid black' }}>
-        <div
-          class="d-flex flex-row bd-highlight mb-3"
-          style={{ width: 'auto' }}
-        >
-          <div class="p-2 bd-highlight"> </div>
-        </div>
+      <div >
+
         {/* <Search
           placeholder="input search text"
           onSearch={value => console.log(value)}
           style={{ width: 200 }}
         /> */}
-        <div className="container">
-          <div
-            class="d-flex flex-row bd-highlight mb-3"
-            style={{ width: 'auto' }}
-          >
-            {' '}
-            <div class="p-2 bd-highlight">
+        <div className="container" style={{display:'flex', flexDirection:'column'}}>
+
               <h3>Danh sách sản phẩm</h3>
-            </div>
-          </div>
+
+
           <TableProductsComponent data={this.props.productListContainer.data} />
         </div>
       </div>
