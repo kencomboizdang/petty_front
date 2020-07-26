@@ -30,10 +30,16 @@ class MainLayout extends React.Component {
       collapsed: !this.state.collapsed,
     });
   };
+  onLogout= ()=>{
+    sessionStorage.removeItem("store");
+    location.reload();
+  }
   render() {
     // console.log(isAuthenticated);
     const isAuthenticated = this.context;
     // var { isSignedIn } = this.props;
+    const store = JSON.parse(sessionStorage.getItem('store'));
+    console.log(store);
     return (
       <Layout style={{ height: '100vh' }}>
         {isAuthenticated ? (
@@ -62,13 +68,14 @@ class MainLayout extends React.Component {
             <Button
                 type="primary"
                 style={{ padding: 0, float: 'right', margin: 15, width: '10%' }}
+                onClick={this.onLogout}
               >
                 Log Out
               </Button>
               <p style={{ padding: 0, float: 'right', margin: 20 }}>
                 {' '}
                 Xin chào,
-                <span style={{ fontWeight: 'bold' }}>Nguyễn Minh Trí</span>
+                <span style={{ fontWeight: 'bold' }}>{store.name}</span>
               </p>
             </Header>
           ) : (

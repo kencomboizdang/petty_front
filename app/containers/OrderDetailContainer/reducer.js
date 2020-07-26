@@ -7,7 +7,7 @@ import produce from 'immer';
 import { DEFAULT_ACTION, GET_ORDER_DETAIL_SUCCESS } from './constants';
 
 export const initialState = {
-  data:""
+  data:"",
 };
 
 /* eslint-disable default-case, no-param-reassign */

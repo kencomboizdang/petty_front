@@ -8,6 +8,7 @@ import ProductDetailContainer from '../ProductDetailContainer';
 import ProductListContainer from '../ProductListContainer';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import AuthContext from '../../utils/auth';
+import ProfileContainer from '../ProfileContainer';
 
 const routes = [
   {
@@ -40,6 +41,12 @@ const routes = [
     exact: true,
     private: true,
     main: () => <ProductDetailContainer />,
+  },
+  {
+    path: '/store-profile',
+    exact: true,
+    private: true,
+    main: () => <ProfileContainer />,
   },
   {
     path: '/products/:id',

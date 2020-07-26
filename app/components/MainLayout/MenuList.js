@@ -13,6 +13,21 @@ const { SubMenu } = Menu;
 
 const menus = [
   {
+    name: 'Cửa hàng',
+    key: 'profile',
+    icon: <UserOutlined />,
+    children:[
+      {
+        name: 'Tổng quan',
+        key: 'overall',
+      },
+      {
+        name: 'Thông tin cửa hàng',
+        key: 'store-profile',
+      },
+    ]
+  },
+  {
     name: 'Quản lý đơn hàng',
     key: 'order-management',
     icon: <UserOutlined />,
@@ -52,7 +67,7 @@ const menus = [
   },
 ];
 class MenuList extends React.Component {
-  rootSubmenuKeys = ['product-management', 'order-management'];
+  rootSubmenuKeys = ['product-management', 'order-management','store-profile'];
 
   constructor(props) {
     super(props);
